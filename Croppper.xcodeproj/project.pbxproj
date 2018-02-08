@@ -13,6 +13,8 @@
 		45C433A0202B707800927C1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45C4339F202B707800927C1E /* Assets.xcassets */; };
 		45C433A3202B707800927C1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45C433A1202B707800927C1E /* LaunchScreen.storyboard */; };
 		45C433A6202B707800927C1E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C433A5202B707800927C1E /* main.m */; };
+		45C433AE202B9ED600927C1E /* DashLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C433AD202B9ED600927C1E /* DashLayer.m */; };
+		45C433B1202BAB8C00927C1E /* UIBezierPath+Extention.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C433B0202BAB8C00927C1E /* UIBezierPath+Extention.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		45C433A2202B707800927C1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45C433A4202B707800927C1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45C433A5202B707800927C1E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		45C433AC202B9ED600927C1E /* DashLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DashLayer.h; sourceTree = "<group>"; };
+		45C433AD202B9ED600927C1E /* DashLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DashLayer.m; sourceTree = "<group>"; };
+		45C433AF202BAB8C00927C1E /* UIBezierPath+Extention.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+Extention.h"; sourceTree = "<group>"; };
+		45C433B0202BAB8C00927C1E /* UIBezierPath+Extention.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+Extention.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,10 @@
 			children = (
 				45C43396202B707800927C1E /* AppDelegate.h */,
 				45C43397202B707800927C1E /* AppDelegate.m */,
+				45C433AF202BAB8C00927C1E /* UIBezierPath+Extention.h */,
+				45C433B0202BAB8C00927C1E /* UIBezierPath+Extention.m */,
+				45C433AC202B9ED600927C1E /* DashLayer.h */,
+				45C433AD202B9ED600927C1E /* DashLayer.m */,
 				45C43399202B707800927C1E /* ViewController.h */,
 				45C4339A202B707800927C1E /* ViewController.m */,
 				45C4339C202B707800927C1E /* Main.storyboard */,
@@ -144,7 +154,9 @@
 			files = (
 				45C4339B202B707800927C1E /* ViewController.m in Sources */,
 				45C433A6202B707800927C1E /* main.m in Sources */,
+				45C433B1202BAB8C00927C1E /* UIBezierPath+Extention.m in Sources */,
 				45C43398202B707800927C1E /* AppDelegate.m in Sources */,
+				45C433AE202B9ED600927C1E /* DashLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +293,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R3JX6N7H4S;
 				INFOPLIST_FILE = Croppper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swift.Croppper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -295,6 +308,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R3JX6N7H4S;
 				INFOPLIST_FILE = Croppper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swift.Croppper;
 				PRODUCT_NAME = "$(TARGET_NAME)";

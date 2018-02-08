@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zbW-K2-Tuh">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,97 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hj7-iv-nvk">
+                                <rect key="frame" x="10" y="159" width="300" height="250"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="he5-xm-5lw"/>
+                                    <constraint firstAttribute="width" constant="300" id="kwa-th-skz"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="nsy-Oz-4tG" appends="YES" id="d1J-sK-g30"/>
+                                    <outletCollection property="gestureRecognizers" destination="Mk6-Hl-bJH" appends="YES" id="Cfg-iu-2qu"/>
+                                    <outletCollection property="gestureRecognizers" destination="vNc-sk-5dJ" appends="YES" id="2wG-UG-YDT"/>
+                                </connections>
+                            </imageView>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EoA-nM-AHP">
+                                <rect key="frame" x="10" y="159" width="300" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="hpH-Gc-Fjf"/>
+                                    <constraint firstAttribute="height" constant="250" id="k4n-fp-TRR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hj7-iv-nvk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D9r-4d-iyr"/>
+                            <constraint firstItem="EoA-nM-AHP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dEE-m2-hed"/>
+                            <constraint firstItem="hj7-iv-nvk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iGi-ar-0hx"/>
+                            <constraint firstItem="EoA-nM-AHP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="qCf-UB-g8h"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="pUd-kf-CaS">
+                        <barButtonItem key="leftBarButtonItem" systemItem="save" id="HOv-f2-NU5">
+                            <connections>
+                                <action selector="save:" destination="BYZ-38-t0r" id="81p-El-EyS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Open" id="1D5-g2-OPX">
+                            <connections>
+                                <action selector="openImagePicker:" destination="BYZ-38-t0r" id="QNy-41-neL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="croppingView" destination="EoA-nM-AHP" id="mGF-Pw-eRH"/>
+                        <outlet property="imageView" destination="hj7-iv-nvk" id="JLo-HA-WW0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="nsy-Oz-4tG">
+                    <connections>
+                        <action selector="moveImage:" destination="BYZ-38-t0r" id="V9I-Fg-FcQ"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="fZa-a2-TUa"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pinchGestureRecognizer id="Mk6-Hl-bJH">
+                    <connections>
+                        <action selector="zoomImage:" destination="BYZ-38-t0r" id="h7I-hq-4ew"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="78q-LI-XTA"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <rotationGestureRecognizer id="vNc-sk-5dJ">
+                    <connections>
+                        <action selector="rotateImage:" destination="BYZ-38-t0r" id="5IC-bn-xMP"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="77o-ZT-k4d"/>
+                    </connections>
+                </rotationGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="456.80000000000001" y="118.29085457271366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1fV-d2-6Py">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zbW-K2-Tuh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wux-f6-jIz">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ys9-PS-c9u"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UPs-fK-h2G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-258" y="118"/>
         </scene>
     </scenes>
 </document>
