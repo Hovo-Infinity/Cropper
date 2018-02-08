@@ -49,7 +49,81 @@
 
 // Save cropped image
 - (IBAction)save:(UIBarButtonItem *)sender {
+    __weak ViewController *weakSelf = self;
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        switch (status) {
+            case PHAuthorizationStatusDenied: {
+                [weakSelf askToOpenSettings];
+            }
+                break;
+            case PHAuthorizationStatusAuthorized: {
+                UIImage *croppedImage = [weakSelf cropImage];
+                UIImageWriteToSavedPhotosAlbum(croppedImage, weakSelf, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }];
+}
 
+#pragma mark - private methods
+
+- (void)askToOpenSettings {
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"Access Denied"
+                                                                     message:@"Go to setting page and allow access"
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *settings = [UIAlertAction actionWithTitle:@"Settings"
+                                                 style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                                             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]]) {
+                                                                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                                             }
+                                                         });
+                                                     }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                 style:UIAlertActionStyleCancel
+                                               handler:NULL];
+    [alertVC addAction:settings];
+    [alertVC addAction:cancel];
+    [self presentViewController:alertVC animated:YES completion:NULL];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    NSString *message = nil;
+    NSString *title = nil;
+    if (error == nil) {
+        title = @"Done!";
+        message = @"successfully saved";
+    } else {
+        message = @"Error!";
+        message = error.localizedDescription;
+    }
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:title
+                                                                     message:message
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:NULL];
+    [alertVC addAction:ok];
+    [self presentViewController:alertVC animated:YES completion:NULL];
+}
+
+- (UIImage *)cropImage {
+    self.croppingView.hidden = YES;
+    //first we will make an UIImage from your view
+    UIGraphicsBeginImageContext(self.view.bounds.size);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *sourceImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect(sourceImage.CGImage, self.croppingView.frame);
+    UIImage *newImage   = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    self.croppingView.hidden = NO;
+    return newImage;
 }
 
 - (void)addBorderToCroppingView {
